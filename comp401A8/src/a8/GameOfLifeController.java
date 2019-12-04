@@ -35,7 +35,6 @@ public class GameOfLifeController implements ActionListener, GameOfLifeObserver,
 				view.getPlayButton().setText("Start");
 			}
 		}
-		//-100 is passed
 		if (x == -100) {
 			view.render(model.getBoard());
 		}
@@ -45,6 +44,7 @@ public class GameOfLifeController implements ActionListener, GameOfLifeObserver,
 		else {
 			view.render(model.getBoard(),x,y);
 		}
+		
 	}
 
 	@Override
@@ -59,7 +59,6 @@ public class GameOfLifeController implements ActionListener, GameOfLifeObserver,
 			break;
 		case 'A':
 			if (!t.isRunning()) {
-				//model.setBoard(modifyArray(model.getBoard(),true));
 				model.advanceSpots();
 			}
 			break;
@@ -145,95 +144,6 @@ public class GameOfLifeController implements ActionListener, GameOfLifeObserver,
 			
 		}
 	}
-	/*public boolean[][] modifyArray(boolean array[][], boolean f) {
-		boolean finalArray[][] = new boolean[array.length][array[0].length];
-		for (int i = 0; i< array.length; i++) {
-			for (int j = 0; j< array[i].length; j++) {
-				finalArray[i][j] = array[i][j];
-			}
-		}
-		
-		for (int i = 0; i< array.length; i++) {
-			for (int j = 0; j< array[i].length; j++) {
-				int count = 0;
-				if (model.getTorusOn()) {
-					count = calculateTorusCount(array,i,j);
-				}
-				else {
-					count = calculateNormalCount(array,i,j);
-				}
-				
-				if (!array[i][j] && count ==model.getBirthThreshold()) {
-					finalArray[i][j] = true;
-				}
-				else if (array[i][j] && (count<model.getSurviveThresholdLow() 
-						|| count>model.getSurviveThresholdHigh()))  {
-					finalArray[i][j] = false;
-				}
-			
-			}
-		}
-		return finalArray;
-	}
-	private int calculateTorusCount(boolean[][] array, int i, int j) {
-		int ia = i+1;
-		int ib = i-1;
-		int ja = j+1;
-		int jb = j-1;	
-		int count = 0;
-		
-		if (i==0 || j ==0 || j ==array.length-1 || i == array.length-1) {
-			if (i== 0) {
-				ib = array.length-1;
-			}
-			if (i == array.length-1) {
-				ia = 0;
-			}
-			if (j == 0) {
-				jb = array.length-1;
-			}
-			if (j==array.length-1) {
-				ja = 0;
-			}
-			if (array[ib][j]) count++;
-			if (array[ib][jb]) count++;
-			if (array[ib][ja]) count++;
-			
-			if (array[i][jb]) count++;
-			if (array[ia][jb]) count++;
-			
-			if (array[ia][j]) count++;
-			if (array[ia][ja]) count++;
-			
-			if (array[i][ja]) count++;
-			
-			return count;
-		}
-		else {
-			return calculateNormalCount(array,i,j);
-		}
-	}
-	
-	private int calculateNormalCount(boolean[][] array, int i, int j) {
-		int count = 0;
-		if (i>0) {
-			if (array[i-1][j]) count++;
-			if (j>0 && array[i-1][j-1]) count++;
-			if (j<array[i].length-1 &&array[i-1][j+1]) count++;
-		}
-		if (j>0) {
-			if (array[i][j-1]) count++;
-			if (i < array.length-1 && array[i+1][j-1]) count++;
-		}
-		if (i<array.length-1) {
-			if (array[i+1][j]) count++;
-			if (j<array[i].length-1 && array[i+1][j+1]) count++;
-		}
-		if (j<array[i].length-1 && array[i][j+1]) count++;	
-		return count;
-		
-	}
-	*/
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub

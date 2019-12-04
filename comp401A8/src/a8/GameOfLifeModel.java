@@ -75,6 +75,7 @@ public class GameOfLifeModel {
 			}
 		}
 	}
+
 	public void setWaitTime(int num) {
 		if (num<10 || num>1000) {
 			throw new IllegalArgumentException("time entered not valid");
@@ -106,7 +107,7 @@ public class GameOfLifeModel {
 		clearBoard();
 		for (int i = 0; i<boardSpots.length; i++) {
 			for (int j = 0; j<boardSpots.length; j++) {
-				if (Math.random() >.6) {
+				if (Math.random() >.7) {
 					boardSpots[i][j] = true;
 				}
 				else {
